@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ox Inventory - Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'inventory-bg': '#22232c',
+                        'inventory-secondary': 'rgba(12, 12, 12, 0.4)',
+                        'inventory-highlight': '#33343F',
+                        'inventory-text': '#c1c2c5',
+                    },
+                    fontFamily: {
+                        'roboto': ['Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-transparent font-roboto text-white overflow-hidden select-none">
+    <div id="app" class="h-screen w-screen">
+        <!-- Main Inventory Container -->
+        <div id="inventory-wrapper" class="hidden flex flex-row justify-center items-center h-full gap-5">
+            <!-- Left Inventory (Player) -->
+            <div class="inventory-grid-wrapper flex flex-col gap-2">
+                <div class="flex justify-between items-center">
+                    <p class="text-base text-inventory-text">Bob Smith</p>
+                    <p class="text-base text-inventory-text">3.0/5.0kg</p>
+                </div>
+                <!-- Weight Bar -->
+                <div class="w-full h-3 bg-black bg-opacity-40 border border-black border-opacity-10 rounded-sm overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-green-500 to-orange-500 transition-all duration-300" style="width: 60%"></div>
+                </div>
+                <!-- Inventory Grid -->
+                <div class="grid grid-cols-5 gap-0.5 h-[52vh] overflow-y-auto">
+                    <!-- Slot 1 - Item with hotkey -->
+                    <div class="inventory-slot relative bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square bg-center bg-no-repeat bg-cover" style="background-image: url('https://via.placeholder.com/80x80/444/fff?text=1')">
+                        <div class="flex flex-col justify-between h-full">
+                            <div class="flex justify-between">
+                                <div class="bg-white text-black text-xs px-1 py-0.5 rounded-br-sm font-medium">1</div>
+                                <div class="flex gap-1 p-1 text-xs text-white">
+                                    <span>3kg</span>
+                                    <span>5x</span>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- Durability bar -->
+                                <div class="h-1 bg-black bg-opacity-50 overflow-hidden">
+                                    <div class="h-full bg-green-500 transition-all duration-300" style="width: 75%"></div>
+                                </div>
+                                <div class="bg-inventory-bg text-center border-t border-black border-opacity-20 rounded-b-sm">
+                                    <div class="text-xs uppercase px-1 py-0.5 font-normal text-inventory-text truncate">Iron</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 2 - Item -->
+                    <div class="inventory-slot relative bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square bg-center bg-no-repeat bg-cover" style="background-image: url('https://via.placeholder.com/80x80/444/fff?text=Tool')">
+                        <div class="flex flex-col justify-between h-full">
+                            <div class="flex justify-end p-1 text-xs text-white">
+                                <span>1x</span>
+                            </div>
+                            <div>
+                                <div class="h-1 bg-black bg-opacity-50 overflow-hidden">
+                                    <div class="h-full bg-orange-500 transition-all duration-300" style="width: 45%"></div>
+                                </div>
+                                <div class="bg-inventory-bg text-center border-t border-black border-opacity-20 rounded-b-sm">
+                                    <div class="text-xs uppercase px-1 py-0.5 font-normal text-inventory-text truncate">Powersaw</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slot 3 - Item -->
+                    <div class="inventory-slot relative bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square bg-center bg-no-repeat bg-cover" style="background-image: url('https://via.placeholder.com/80x80/444/fff?text=Cu')">
+                        <div class="flex flex-col justify-between h-full">
+                            <div class="flex justify-end p-1 text-xs text-white">
+                                <span>12x</span>
+                            </div>
+                            <div class="bg-inventory-bg text-center border-t border-black border-opacity-20 rounded-b-sm">
+                                <div class="text-xs uppercase px-1 py-0.5 font-normal text-inventory-text truncate">Copper</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty slots -->
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    
+                    <!-- More empty slots to fill the grid -->
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="flex flex-col gap-5 justify-center items-center">
+                <div class="flex flex-col gap-5">
+                    <input type="number" value="0" min="0" class="w-24 px-2 py-4 text-center text-white bg-inventory-secondary border-none rounded-sm outline-none transition-colors duration-200 focus:bg-black focus:bg-opacity-80">
+                    <button class="px-2 py-3 text-sm text-white bg-inventory-secondary border-none rounded-sm uppercase font-medium transition-colors duration-200 hover:bg-black hover:bg-opacity-80 active:translate-y-1">Use</button>
+                    <button class="px-2 py-3 text-sm text-white bg-inventory-secondary border-none rounded-sm uppercase font-medium transition-colors duration-200 hover:bg-black hover:bg-opacity-80 active:translate-y-1">Give</button>
+                    <button class="px-2 py-3 text-sm text-white bg-inventory-secondary border-none rounded-sm uppercase font-medium transition-colors duration-200 hover:bg-black hover:bg-opacity-80 active:translate-y-1">Close</button>
+                </div>
+            </div>
+
+            <!-- Right Inventory (Shop/Crafting) -->
+            <div class="inventory-grid-wrapper flex flex-col gap-2">
+                <div class="flex justify-between items-center">
+                    <p class="text-base text-inventory-text">Crafting Bench</p>
+                </div>
+                <!-- Inventory Grid -->
+                <div class="grid grid-cols-5 gap-0.5 h-[52vh] overflow-y-auto">
+                    <!-- Crafting Item -->
+                    <div class="inventory-slot relative bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square bg-center bg-no-repeat bg-cover" style="background-image: url('https://via.placeholder.com/80x80/444/fff?text=Lock')">
+                        <div class="flex flex-col justify-between h-full">
+                            <div class="flex justify-between items-start p-1">
+                                <div class="flex items-center gap-1 text-white">
+                                    <i class="fas fa-clock text-xs"></i>
+                                    <span class="text-xs">5s</span>
+                                </div>
+                            </div>
+                            <div class="bg-inventory-bg text-center border-t border-black border-opacity-20 rounded-b-sm">
+                                <div class="text-xs uppercase px-1 py-0.5 font-normal text-inventory-text truncate">Lockpick</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty crafting slots -->
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                    <div class="inventory-slot bg-inventory-secondary rounded-sm border border-black border-opacity-20 aspect-square"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotbar -->
+        <div id="hotbar" class="hidden fixed bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-0.5">
+            <!-- Hotbar Slot 1 -->
+            <div class="w-20 h-20 bg-inventory-secondary rounded-sm border border-black border-opacity-20 bg-center bg-no-repeat bg-cover relative" style="background-image: url('https://via.placeholder.com/80x80/444/fff?text=1')">
+                <div class="flex flex-col justify-between h-full">
+                    <div class="flex justify-between">
+                        <div class="bg-white text-black text-xs px-1 py-0.5 rounded-br-sm font-medium">1</div>
+                        <div class="flex gap-1 p-1 text-xs text-white">
+                            <span>3kg</span>
+                            <span>5x</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="h-1 bg-black bg-opacity-50 overflow-hidden">
+                            <div class="h-full bg-green-500 transition-all duration-300" style="width: 75%"></div>
+                        </div>
+                        <div class="bg-inventory-bg text-center border-t border-black border-opacity-20 rounded-b-sm">
+                            <div class="text-xs uppercase px-1 py-0.5 font-normal text-inventory-text truncate">Iron</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotbar Slot 2 -->
+            <div class="w-20 h-20 bg-inventory-secondary rounded-sm border border-black border-opacity-20 bg-center bg-no-repeat bg-cover relative" style="background-image: url('https://via.placeholder.com/80x80/444/fff?text=Tool')">
+                <div class="flex flex-col justify-between h-full">
+                    <div class="flex justify-between">
+                        <div class="bg-white text-black text-xs px-1 py-0.5 rounded-br-sm font-medium">2</div>
+                        <div class="flex gap-1 p-1 text-xs text-white">
+                            <span>1x</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="h-1 bg-black bg-opacity-50 overflow-hidden">
+                            <div class="h-full bg-orange-500 transition-all duration-300" style="width: 45%"></div>
+                        </div>
+                        <div class="bg-inventory-bg text-center border-t border-black border-opacity-20 rounded-b-sm">
+                            <div class="text-xs uppercase px-1 py-0.5 font-normal text-inventory-text truncate">Powersaw</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty hotbar slots -->
+            <div class="w-20 h-20 bg-inventory-secondary rounded-sm border border-black border-opacity-20">
+                <div class="flex flex-col justify-between h-full">
+                    <div class="bg-white text-black text-xs px-1 py-0.5 rounded-br-sm font-medium">3</div>
+                </div>
+            </div>
+            <div class="w-20 h-20 bg-inventory-secondary rounded-sm border border-black border-opacity-20">
+                <div class="flex flex-col justify-between h-full">
+                    <div class="bg-white text-black text-xs px-1 py-0.5 rounded-br-sm font-medium">4</div>
+                </div>
+            </div>
+            <div class="w-20 h-20 bg-inventory-secondary rounded-sm border border-black border-opacity-20">
+                <div class="flex flex-col justify-between h-full">
+                    <div class="bg-white text-black text-xs px-1 py-0.5 rounded-br-sm font-medium">5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tooltip -->
+        <div id="tooltip" class="hidden fixed pointer-events-none bg-inventory-bg p-2 rounded border border-black border-opacity-20 text-inventory-text font-roboto min-w-48 z-50">
+            <div class="flex justify-between items-center mb-2">
+                <p class="text-sm font-normal">Iron</p>
+                <p class="text-sm">Special</p>
+            </div>
+            <div class="w-full h-px bg-white bg-opacity-12 mb-2"></div>
+            <div class="text-xs">
+                <p class="mb-1">Durability: 75</p>
+                <p class="mb-1">Weight: 3000g</p>
+                <p>A piece of raw iron ore that can be processed into useful materials.</p>
+            </div>
+        </div>
+
+        <!-- Context Menu -->
+        <div id="context-menu" class="hidden fixed min-w-48 bg-inventory-bg text-inventory-text p-1 border border-black border-opacity-20 rounded outline-none flex flex-col z-50">
+            <button class="p-2 rounded bg-transparent border-none text-inventory-text flex justify-between items-center hover:bg-inventory-highlight cursor-pointer transition-colors">Use</button>
+            <button class="p-2 rounded bg-transparent border-none text-inventory-text flex justify-between items-center hover:bg-inventory-highlight cursor-pointer transition-colors">Give</button>
+            <button class="p-2 rounded bg-transparent border-none text-inventory-text flex justify-between items-center hover:bg-inventory-highlight cursor-pointer transition-colors">Drop</button>
+            <button class="p-2 rounded bg-transparent border-none text-inventory-text flex justify-between items-center hover:bg-inventory-highlight cursor-pointer transition-colors">Copy Serial</button>
+        </div>
+
+        <!-- Info Button -->
+        <button id="info-btn" class="fixed bottom-6 right-6 w-13 h-13 flex justify-center items-center bg-inventory-secondary border-none rounded text-white transition-colors duration-200 hover:bg-black hover:bg-opacity-80 cursor-pointer">
+            <i class="fas fa-info text-lg"></i>
+        </button>
+
+        <!-- Controls Modal -->
+        <div id="controls-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-inventory-bg p-4 rounded flex flex-col gap-4 w-96 text-inventory-text">
+                <div class="flex justify-between items-center text-lg">
+                    <p>Useful Controls</p>
+                    <button id="close-modal" class="w-6 h-6 p-1 flex justify-center items-center rounded hover:bg-inventory-highlight cursor-pointer">
+                        <i class="fas fa-times text-sm"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col gap-5">
+                    <p><kbd class="bg-gray-600 px-2 py-1 rounded text-xs">RMB</kbd><br>Open item context menu</p>
+                    <p><kbd class="bg-gray-600 px-2 py-1 rounded text-xs">ALT + LMB</kbd><br>Fast use an item</p>
+                    <p><kbd class="bg-gray-600 px-2 py-1 rounded text-xs">CTRL + LMB</kbd><br>Fast move items to another inventory</p>
+                    <p><kbd class="bg-gray-600 px-2 py-1 rounded text-xs">SHIFT + Drag</kbd><br>Split item quantity into half</p>
+                    <p><kbd class="bg-gray-600 px-2 py-1 rounded text-xs">CTRL + SHIFT + LMB</kbd><br>Fast move half stack to another inventory</p>
+                    <div class="text-right">🐂</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Notification -->
+        <div id="item-notification" class="hidden fixed bottom-40 left-1/2 transform -translate-x-1/2 flex gap-0.5">
+            <div class="w-20 h-20 bg-inventory-secondary rounded-sm border border-black border-opacity-20 bg-center bg-no-repeat bg-cover" style="background-image: url('https://via.placeholder.com/80x80/444/fff?text=+')">
+                <div class="flex flex-col justify-between h-full">
+                    <div class="w-full text-inventory-text bg-inventory-secondary uppercase text-center rounded-t-sm">
+                        <p class="text-xs p-0.5 font-semibold">Added</p>
+                    </div>
+                    <div class="bg-inventory-bg text-center border-t border-black border-opacity-20 rounded-b-sm">
+                        <div class="text-xs uppercase px-1 py-0.5 font-normal text-inventory-text truncate">Iron</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle inventory visibility
+        function toggleInventory() {
+            const inventory = document.getElementById('inventory-wrapper');
+            inventory.classList.toggle('hidden');
+            inventory.classList.toggle('flex');
+        }
+
+        // Toggle hotbar visibility
+        function toggleHotbar() {
+            const hotbar = document.getElementById('hotbar');
+            hotbar.classList.toggle('hidden');
+            hotbar.classList.toggle('flex');
+            
+            // Auto hide after 3 seconds
+            if (!hotbar.classList.contains('hidden')) {
+                setTimeout(() => {
+                    hotbar.classList.add('hidden');
+                    hotbar.classList.remove('flex');
+                }, 3000);
+            }
+        }
+
+        // Show tooltip
+        function showTooltip(event) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.classList.remove('hidden');
+            tooltip.style.left = event.pageX + 10 + 'px';
+            tooltip.style.top = event.pageY + 10 + 'px';
+        }
+
+        // Hide tooltip
+        function hideTooltip() {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.classList.add('hidden');
+        }
+
+        // Show context menu
+        function showContextMenu(event) {
+            event.preventDefault();
+            const contextMenu = document.getElementById('context-menu');
+            contextMenu.classList.remove('hidden');
+            contextMenu.style.left = event.pageX + 'px';
+            contextMenu.style.top = event.pageY + 'px';
+        }
+
+        // Hide context menu
+        function hideContextMenu() {
+            const contextMenu = document.getElementById('context-menu');
+            contextMenu.classList.add('hidden');
+        }
+
+        // Show item notification
+        function showItemNotification() {
+            const notification = document.getElementById('item-notification');
+            notification.classList.remove('hidden');
+            notification.classList.add('flex');
+            
+            setTimeout(() => {
+                notification.classList.add('hidden');
+                notification.classList.remove('flex');
+            }, 2500);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inventory slots hover effects
+            document.querySelectorAll('.inventory-slot').forEach(slot => {
+                slot.addEventListener('mouseenter', showTooltip);
+                slot.addEventListener('mouseleave', hideTooltip);
+                slot.addEventListener('contextmenu', showContextMenu);
+            });
+
+            // Click outside to hide context menu
+            document.addEventListener('click', hideContextMenu);
+
+            // Info button
+            document.getElementById('info-btn').addEventListener('click', function() {
+                document.getElementById('controls-modal').classList.remove('hidden');
+            });
+
+            // Close modal
+            document.getElementById('close-modal').addEventListener('click', function() {
+                document.getElementById('controls-modal').classList.add('hidden');
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                switch(e.key) {
+                    case 'F2':
+                    case 'Tab':
+                        e.preventDefault();
+                        toggleInventory();
+                        break;
+                    case 'Escape':
+                        hideContextMenu();
+                        document.getElementById('controls-modal').classList.add('hidden');
+                        break;
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                        if (!document.getElementById('inventory-wrapper').classList.contains('hidden')) {
+                            showItemNotification();
+                        }
+                        break;
+                }
+            });
+
+            // Demo: Show inventory after 1 second
+            setTimeout(() => {
+                toggleInventory();
+            }, 1000);
+
+            // Demo: Show hotbar after 2 seconds
+            setTimeout(() => {
+                toggleHotbar();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
